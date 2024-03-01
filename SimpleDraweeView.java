@@ -35,10 +35,10 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.drawee.drawable.ScalingUtils;
-import com.heytap.browser.core.common.R;
-import com.heytap.browser.core.common.image.ImageLoader2;
-import com.heytap.browser.core.common.image.AspectRatioMeasure;
-import com.heytap.browser.core.common.image.RoundRectDrawable;
+import com.common.R;
+import com.image.ImageLoader2;
+import com.AspectRatioMeasure;
+import com.RoundRectDrawable;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
