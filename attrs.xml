@@ -1,0 +1,58 @@
+<resources>
+    <declare-styleable name="SimpleDraweeView">
+        <attr name="frescoUrl" format="string" />
+        <attr name="placeholderImage" format="reference" />
+        <attr name="roundedCornerRadius" format="dimension" />
+        <attr name="failureImage" format="reference" />
+        <attr name="roundAsCircle" format="boolean" />
+        <attr name="fadeDuration" format="integer" />
+        <attr name="needRoundingBorder" format="boolean" />
+        <attr name="roundingBorderColor" format="color" />
+        <attr name="roundingBorderWidth" format="dimension" />
+        <attr name="roundWithOverlayColor" format="color" />
+        <attr name="roundBottomLeft" format="boolean" />
+        <attr name="roundBottomRight" format="boolean" />
+        <attr name="roundTopLeft" format="boolean" />
+        <attr name="roundTopRight" format="boolean" />
+        <attr name="viewAspectRatio" format="float" />
+        <attr name="backgroundImage" format="reference" />
+        <attr name="roundSmooth" format="boolean" />
+        <attr name="roundSmoothRadius" format="dimension" />
+        <attr name="placeholderImageScaleType">
+            <enum name="none" value="-1" />
+            <enum name="fitXY" value="0" />
+            <enum name="fitStart" value="1" />
+            <enum name="fitCenter" value="2" />
+            <enum name="fitEnd" value="3" />
+            <enum name="center" value="4" />
+            <enum name="centerInside" value="5" />
+            <enum name="centerCrop" value="6" />
+            <enum name="focusCrop" value="7" />
+            <enum name="fitBottomStart" value="8" />
+        </attr>
+        <attr name="failureImageScaleType">
+            <enum name="none" value="-1" />
+            <enum name="fitXY" value="0" />
+            <enum name="fitStart" value="1" />
+            <enum name="fitCenter" value="2" />
+            <enum name="fitEnd" value="3" />
+            <enum name="center" value="4" />
+            <enum name="centerInside" value="5" />
+            <enum name="centerCrop" value="6" />
+            <enum name="focusCrop" value="7" />
+            <enum name="fitBottomStart" value="8" />
+        </attr>
+        <attr name="actualImageScaleType" format="enum">
+            <enum name="none" value="-1" />
+            <enum name="fitXY" value="0" />
+            <enum name="fitStart" value="1" />
+            <enum name="fitCenter" value="2" />
+            <enum name="fitEnd" value="3" />
+            <enum name="center" value="4" />
+            <enum name="centerInside" value="5" />
+            <enum name="centerCrop" value="6" />
+            <enum name="focusCrop" value="7" />
+            <enum name="fitBottomStart" value="8" />
+        </attr>
+    </declare-styleable>
+</resources>
