@@ -15,7 +15,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
-import android.widget.ImageView;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.Nullable;
@@ -35,13 +34,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.drawee.drawable.ScalingUtils;
-import com.common.R;
-import com.image.ImageLoader2;
-import com.AspectRatioMeasure;
-import com.RoundRectDrawable;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 public class SimpleDraweeView extends AppCompatImageView {
     public static final String TAG = "SimpleDraweeView";
@@ -58,7 +51,7 @@ public class SimpleDraweeView extends AppCompatImageView {
     private Drawable mFailureImage;
     private boolean mForceUpdate;
     private boolean mSkipMemory;
-    private boolean mRoundAsCircle;
+//    private boolean mRoundAsCircle;
     private boolean autoPlayAnimations;
     //    private boolean dynamicWebp;
     private String staticImgUrl;
@@ -106,9 +99,9 @@ public class SimpleDraweeView extends AppCompatImageView {
             mPlaceholderImage = typedArray.getDrawable(R.styleable.SimpleDraweeView_placeholderImage);
             mPlaceholderImage.setCallback(this);
         }
-        if (typedArray.hasValue(R.styleable.SimpleDraweeView_roundAsCircle)) {
-            mRoundAsCircle = typedArray.getBoolean(R.styleable.SimpleDraweeView_roundAsCircle, false);
-        }
+//        if (typedArray.hasValue(R.styleable.SimpleDraweeView_roundAsCircle)) {
+//            mRoundAsCircle = typedArray.getBoolean(R.styleable.SimpleDraweeView_roundAsCircle, false);
+//        }
 
 
         if (typedArray.hasValue(R.styleable.SimpleDraweeView_failureImage)) {
@@ -152,22 +145,22 @@ public class SimpleDraweeView extends AppCompatImageView {
         }
 
         typedArray.recycle();
-        if (mRoundAsCircle) {
-            setOutlineProvider(new ViewOutlineProvider() {
-                @Override
-                public void getOutline(View view, Outline outline) {
-                    int size = Math.min(getWidth(), getHeight());
-                    outline.setRoundRect(0, 0, getWidth(), getHeight(), size / 2f);
-                }
-            });
+//        if (mRoundAsCircle) {
+//            setOutlineProvider(new ViewOutlineProvider() {
+//                @Override
+//                public void getOutline(View view, Outline outline) {
+//                    int size = Math.min(getWidth(), getHeight());
+//                    outline.setRoundRect(0, 0, getWidth(), getHeight(), size / 2f);
+//                }
+//            });
+//            setClipToOutline(true);
+//        } else {
+        mRoundBackgroundDrawable = new RoundRectDrawable(mRoundSmoothRadius);
+        if (mRoundSmoothRadius > 0) {
+            setBackground(mRoundBackgroundDrawable);
             setClipToOutline(true);
-        } else {
-            mRoundBackgroundDrawable = new RoundRectDrawable(mRoundSmoothRadius);
-            if (mRoundSmoothRadius > 0) {
-                setBackground(mRoundBackgroundDrawable);
-                setClipToOutline(true);
-            }
         }
+//        }
 
         post(new Runnable() {
             @Override
@@ -457,13 +450,13 @@ public class SimpleDraweeView extends AppCompatImageView {
             transformation = new CenterCrop();
         }
 
-        if (!mRoundAsCircle && mRoundSmoothRadius == 0) {
+//        if (!mRoundAsCircle && mRoundSmoothRadius == 0) {
             // glide不处理圆角的情况，单独处理 webp 动图
 //            if (dynamicWebp) {
 //                mRequestOptions.optionalTransform(WebpDrawable.class, new WebpDrawableTransformation(transformation));
 //            }
-            return mRequestOptions;
-        }
+//            return mRequestOptions;
+//        }
 
 //        if (dynamicWebp) {
 //            mRequestOptions.optionalTransform(WebpDrawable.class, new WebpDrawableTransformation(transformation));
@@ -480,9 +473,12 @@ public class SimpleDraweeView extends AppCompatImageView {
         return mRequestOptions;
     }
 
-    public void setRoundedCornerRadius(@Px @IntRange(from = 1) int radius) {
-        if (radius <= 0) return;
-        mRound = new RoundedCorners(radius);
+    public void setRoundedCornerRadius(@Px @IntRange(from = 0) int radius) {
+        if (radius > 0) {
+            mRound = new RoundedCorners(radius);
+        } else {
+            mRound = null;
+        }
     }
 
     public void setRoundedCornerRadius(float topLeft, float topRight, float bottomRight, float bottomLeft) {
